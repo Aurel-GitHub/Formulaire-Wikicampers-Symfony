@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Entity;
+namespace Aurel\ContactBundle\Entity;
 
-use Aurel\ContactBundle\Repository\BundleRepository;
+use Aurel\ContactBundle\Repository\ContactBundleRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ContactRepository::class)
+ * @ORM\Entity(repositoryClass=ContactBundleRepository::class)
  */
-class Contact
+class ContactBundle
 {
     /**
      * @ORM\Id
@@ -40,7 +40,7 @@ class Contact
     /**
      * @ORM\Column(type="datetime")
      */
-    private $created_at;
+    private $createdAt;
 
     public function getId(): ?int
     {
@@ -97,12 +97,12 @@ class Contact
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->created_at = $created_at;
+        $this->createdAt = $createdAt;
 
         return $this;
     }

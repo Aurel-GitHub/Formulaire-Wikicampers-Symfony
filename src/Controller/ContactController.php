@@ -1,48 +1,37 @@
 <?php
 
-namespace Aurel\ContactBundle\Controller;
+namespace App\Controller;
 
-//        return $this->render('@WikicampersContact/Default/index.html.twig');
-
-use Aurel\ContactBundle\Entity\ContactBundle;
-use Aurel\ContactBundle\Form\ContactBundleType;
-use Aurel\ContactBundle\Repository\ContactBundleRepository;
+use App\Entity\Contact;
+use App\Form\ContactType;
+use App\Repository\ContactRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 class ContactController extends Controller
 {
-
-//    /**
-//     * @var ContactRepository
-//     */
-//    private $repositiory;
-//
-//    public function __construct(ContactRepository $repository)
-//    {
-//        $this->repositiory = $repository;
-//
-//    }
-
     /**
-     * @return Response
+     * @Route("/", name="accueil")
      */
-    public function homeAction(ContactBundleRepository $repository)
+    public function home(ContactRepository $repository)
     {
-//        $data = $this->repositiory->findAll();
         $data = $repository->findAll();
-        return $this->render('@WikicampersContact/Default/accueil.html.twig',['controller_name' => 'ContactController', 'contacts' => $data]);
 
+        return $this->render('form/accueil.html.twig', ['controller_name' => 'ContactController', 'contacts' => $data]);
     }
 
-    public function formAction(Request $request, EntityManagerInterface $manager, \Swift_Mailer $mailer)
+    /**
+     * @Route("/formulaire", name="formContact")
+     */
+    public function create(Request $request, EntityManagerInterface $manager, \Swift_Mailer $mailer)
     {
-        $contact = new ContactBundle();
+        $contact = new Contact();
 
-        $form = $this->createForm(ContactBundleType::class, $contact);
+        $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -68,6 +57,7 @@ class ContactController extends Controller
                 );
             $mailer->send($email);
 
+
             /**
              * Mail de confirmation
              */
@@ -88,9 +78,24 @@ class ContactController extends Controller
 
             $this->addFlash('success', 'Votre mail à bien été envoyé');
 
-//            return $this->redirectToRoute('accueil');
+            return $this->redirectToRoute('accueil');
         }
-        return $this->render('@WikicampersContact/Default/formulaire.html.twig', ['form' => $form->createView()]);
+
+        return $this->render('form/formulaire.html.twig', ['form' => $form->createView()]);
     }
 
+
+    /**
+     * @Route("/{id}", name="delete_contact", methods={"DELETE"})
+     */
+    public function delete(Request $request, Contact $contact): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $contact->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($contact);
+            $entityManager->flush();
+            return $this->redirectToRoute('accueil');
+        }
+        return new Response($this->addFlash('danger', 'suppression confirmée'));
+    }
 }

@@ -1,0 +1,7 @@
+wikicampers_contact_homepage:
+    path:     /home
+    defaults: { _controller: WikicampersContactBundle:Contact:home }
+
+wikicampers_contact_formulaire:
+    path:     /form
+    defaults: { _controller: WikicampersContactBundle:Contact:form }

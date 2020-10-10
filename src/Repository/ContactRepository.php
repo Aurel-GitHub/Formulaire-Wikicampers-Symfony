@@ -1,7 +1,6 @@
 <?php
 
-//namespace App\Repository;
-namespace Aurel\ContactBundle\Repository;
+namespace App\Repository;
 
 
 use App\Entity\Contact;

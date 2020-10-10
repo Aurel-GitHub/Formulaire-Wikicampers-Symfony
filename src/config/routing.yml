@@ -1,0 +1,4 @@
+wikicampers_contact:
+    resource: "@WikicampersContactBundle/Resources/config/routing.yml"
+    prefix:   /
+
