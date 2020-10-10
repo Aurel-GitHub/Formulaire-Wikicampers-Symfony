@@ -13,13 +13,8 @@
 <span class="preheader">{{ prenom }} {{ nom }} vous demande des informartions </span>
 <p><h2>Description</h2></p>
 <p>{{ description }}</p>
-
-
-<form action="mailto:{{ mail }}" method="GET">
-    <input type="submit" value="Recontacter" />
-</form>
-
-
+             <input class="btn btn-primary" type="button"value="Contacter" href="mailto:{{ mail }}">
+<br>
 <div class="image-footer">
     <img src="https://www.pngkit.com/png/full/253-2539875_orange-curve-line-png.png" alt="imageFooter">
 </div>
