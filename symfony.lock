@@ -147,9 +147,6 @@
             "./config/packages/sensio_framework_extra.yaml"
         ]
     },
-    "sensio/generator-bundle": {
-        "version": "v3.1.7"
-    },
     "swiftmailer/swiftmailer": {
         "version": "v6.2.3"
     },
