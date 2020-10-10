@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Salut{% endblock %}
+
+{% block body %}
+    <br>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+        <br>
+    {% endfor %}
+
+    {% for message in app.flashes('danger') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+        <br>
+    {% endfor %}
+
+    {% for contact in contacts %}
+
+<table class="table table-hover">
+    <tbody>
+    <tr class="table-active">
+        <th scope="primary"><h4>{{ contact.prenom }} {{ contact.nom }}</h4></th>
+        <td><h5>{{ contact.mail}}</h5></td>
+        <td>{{ contact.description }}</td>
+        <td>le {{ contact.createdAt|date("d/m/Y") }} à {{ contact.createdAt|date("H:i") }}</td>
+        <td>
+            <form method="post" action="{{ path('delete_contact', {'id': contact.id}) }}" style="display: inline-block" onsubmit="return confirm('Êtes vous vraiment sûr ?')">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ contact.id) }}">
+                <button class="btn btn-danger">Supprimer</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+        <br>
+{% endfor %}
+
+{% endblock %}
