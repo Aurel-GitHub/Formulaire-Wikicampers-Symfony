@@ -53,8 +53,8 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/",
-            "Aurel\\ContactBundle\\": "lib/ContactBundle"
-        }
+            "Aurel\\ContactBundle\\": "Wikicampers/ContactBundle"
+                    }
     },
     "autoload-dev": {
         "psr-4": {

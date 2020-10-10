@@ -15,5 +15,5 @@ return [
     Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
     Symfony\Bundle\WebServerBundle\WebServerBundle::class => ['dev' => true],
     Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle::class => ['all' => true],
-    Aurel\ContactBundle\ContactBundle::class => ['all' => true],
+    Aurel\ContactBundle\WikicampersContactBundle::class => ['all' => true],
 ];

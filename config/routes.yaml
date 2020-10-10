@@ -4,3 +4,7 @@
 #index:
 #    path: /
 #    defaults: { _controller: 'App\Controller\DefaultController::index' }
+
+wikicampers_contact:
+  resource: "@WikicampersContactBundle/Resources/config/routing.yml"
+
