@@ -19,7 +19,7 @@ class ContactController extends Controller
      */
     public function home(ContactRepository $repository)
     {
-        $data = $repository->findAll();
+        $data = $repository->findByDate();
 
         return $this->render('form/accueil.html.twig', ['controller_name' => 'ContactController', 'contacts' => $data]);
     }

@@ -3,10 +3,12 @@
 namespace Aurel\ContactBundle\Controller;
 
 //        return $this->render('@WikicampersContact/Default/index.html.twig');
-
-use Aurel\ContactBundle\Entity\ContactBundle;
-use Aurel\ContactBundle\Form\ContactBundleType;
-use Aurel\ContactBundle\Repository\ContactBundleRepository;
+//
+//use Aurel\ContactBundle\Entity\ContactBundle;
+//use Aurel\ContactBundle\Form\ContactBundleType;
+//use Aurel\ContactBundle\Repository\ContactBundleRepository;
+use App\Entity\Contact;
+use App\Form\ContactType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -28,9 +30,9 @@ class ContactController extends Controller
 //    }
 
     /**
-     * @return Response
+     *
      */
-    public function homeAction(ContactBundleRepository $repository)
+    public function homeAction(Contact $repository)
     {
 //        $data = $this->repositiory->findAll();
         $data = $repository->findAll();
@@ -40,9 +42,9 @@ class ContactController extends Controller
 
     public function formAction(Request $request, EntityManagerInterface $manager, \Swift_Mailer $mailer)
     {
-        $contact = new ContactBundle();
+        $contact = new Contact();
 
-        $form = $this->createForm(ContactBundleType::class, $contact);
+        $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
