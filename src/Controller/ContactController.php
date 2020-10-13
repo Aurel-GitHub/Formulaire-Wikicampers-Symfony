@@ -44,7 +44,8 @@ class ContactController extends Controller
              */
             $email = (new \Swift_Message('Donneé infos'))
                 ->setFrom($form->get('mail')->getData())
-                ->setTo('patxi.laduche@wikicampers.fr')
+//                ->setTo('patxi.laduche@wikicampers.fr')
+                    ->setTo('adresse@gmail.com')
                 ->setBody(
                     $this->renderView(
                         'form/email.html.twig',

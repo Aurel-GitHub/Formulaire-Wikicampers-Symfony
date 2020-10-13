@@ -17,7 +17,7 @@ class ContactRepository extends ServiceEntityRepository
     public function findByDate()
     {
         return  $this->createQueryBuilder('c')
-                        ->orderBy('c.created_at', 'ASC' )
+                        ->orderBy('c.created_at', 'DESC' )
                         ->setMaxResults(5)
                         ->getQuery()
                         ->getResult();
