@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ContactRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ContactRepository::class)
@@ -18,6 +19,7 @@ class Contact
     private $id;
 
     /**
+     * @Groups("contact:read")
      * @ORM\Column(type="string", length=255)
      */
     private $prenom;
@@ -28,16 +30,19 @@ class Contact
     private $nom;
 
     /**
+     * @Groups("contact:read")
      * @ORM\Column(type="text")
      */
     private $description;
 
     /**
+     * @Groups("contact:read")
      * @ORM\Column(type="string", length=255)
      */
     private $mail;
 
     /**
+     * @Groups("contact:read")
      * @ORM\Column(type="datetime")
      */
     private $created_at;
