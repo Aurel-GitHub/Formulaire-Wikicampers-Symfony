@@ -15,6 +15,10 @@ class ContactApiController extends Controller
 {
 
     /**
+     * php -S localhost:3000 -t public
+     */
+
+    /**
      * @Route("/api/contact", name="contact_api", methods={"GET"})
      */
     public function index(ContactRepository $repository)

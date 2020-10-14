@@ -58,7 +58,6 @@ class ContactController extends Controller
                 );
             $mailer->send($email);
 
-
             /**
              * Mail de confirmation
              */
